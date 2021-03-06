@@ -67,8 +67,10 @@ public class PetService {
     }
 
     public void deleteById(long id){
-        if (getById(id) != null) {
+        if (petRepository.existsById(id)) {
             petRepository.deleteById(id);
+        }else{
+            throw new NotFoundException("Pet doesn't exist!");
         }
     }
 }

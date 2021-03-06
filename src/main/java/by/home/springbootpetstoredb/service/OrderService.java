@@ -30,8 +30,10 @@ public class OrderService {
     }
 
     public void deleteById(long id){
-        if(getById(id)!=null){
+        if(orderRepository.existsById(id)){
             orderRepository.deleteById(id);
+        }else {
+            throw new NotFoundException("Order doesn't exist!");
         }
     }
 

@@ -24,8 +24,10 @@ public class UserService {
 
     @Transactional
     public void deleteByLogin(String login){
-        if (getByLogin(login) != null) {
+        if (userRepository.existsByUserName(login)) {
             userRepository.deleteByUserName(login);
+        }else {
+            throw new NotFoundException("User doesn't exist!");
         }
     }
 

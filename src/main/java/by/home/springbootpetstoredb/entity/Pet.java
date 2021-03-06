@@ -24,7 +24,7 @@ public class Pet {
 
     @Pattern(regexp = "[A-Z][a-z]{2,7}")
     private String name;
-    @OneToMany
+    @ManyToMany
     private List<Tag> tags;
 
     private PetStatusEnum status;
