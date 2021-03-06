@@ -1,6 +1,8 @@
 package by.home.springbootpetstoredb.resource;
 
+import by.home.springbootpetstoredb.entity.Token;
 import by.home.springbootpetstoredb.entity.User;
+import by.home.springbootpetstoredb.entity.UserDTO;
 import by.home.springbootpetstoredb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,18 @@ public class UserResource {
     public ResponseEntity<User> save(@Valid @RequestBody User user){
         User save = userService.save(user);
         return new ResponseEntity<>(save, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/auth")
+    public ResponseEntity<String> auth(@Valid @RequestBody UserDTO userDTO){
+        User user = new User();
+        String userName = userDTO.getUserName();
+        String password = userDTO.getPassword();
+        user.setUserName(userName);
+        user.setPassword(password);
+        User byLogin = userService.getByLogin(userName);
+        Token token = userService.auth(byLogin);
+        return new ResponseEntity<>(token.getKey(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{login}")
