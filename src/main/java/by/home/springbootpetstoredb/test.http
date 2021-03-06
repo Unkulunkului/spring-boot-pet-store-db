@@ -7,8 +7,17 @@ Content-Type: application/json
   "lastName": "Fwast",
   "email": "fwqfllq@mail.ru",
   "password": "passwod",
-  "phone": "80445729199",
-  "userStatus": "2"
+  "phone": [
+    "80440009998",
+    "+375291259489"
+  ],
+  "userStatus": "2",
+  "address":
+  {
+    "street": "street",
+    "houseNumber":"23a",
+    "city": "city"
+  }
 }
 
 
