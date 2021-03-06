@@ -22,7 +22,7 @@ public class TagResource {
 
     @PostMapping
     public ResponseEntity<Tag> save(@Valid @RequestBody Tag tag){
-        tagService.save(tag);
-        return new ResponseEntity<>(tag, HttpStatus.OK);
+        Tag save = tagService.save(tag);
+        return new ResponseEntity<>(save, HttpStatus.OK);
     }
 }

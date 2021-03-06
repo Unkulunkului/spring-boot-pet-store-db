@@ -19,8 +19,8 @@ public class UserResource {
 
     @PostMapping
     public ResponseEntity<User> save(@Valid @RequestBody User user){
-        userService.save(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        User save = userService.save(user);
+        return new ResponseEntity<>(save, HttpStatus.OK);
     }
 
     @GetMapping(path = "/{login}")

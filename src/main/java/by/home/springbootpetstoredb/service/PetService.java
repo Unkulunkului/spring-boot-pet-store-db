@@ -67,6 +67,8 @@ public class PetService {
     }
 
     public void deleteById(long id){
-        petRepository.deleteById(id);
+        if (getById(id) != null) {
+            petRepository.deleteById(id);
+        }
     }
 }

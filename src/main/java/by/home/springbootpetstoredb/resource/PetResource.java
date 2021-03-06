@@ -20,8 +20,8 @@ public class PetResource {
 
     @PostMapping
     public ResponseEntity<Pet> save(@Valid @RequestBody Pet pet){
-        petService.save(pet);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+        Pet save = petService.save(pet);
+        return new ResponseEntity<>(save, HttpStatus.OK);
     }
 
     @PutMapping

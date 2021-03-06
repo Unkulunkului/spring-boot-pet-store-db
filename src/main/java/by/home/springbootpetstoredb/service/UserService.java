@@ -1,6 +1,7 @@
 package by.home.springbootpetstoredb.service;
 
 import by.home.springbootpetstoredb.entity.User;
+import by.home.springbootpetstoredb.exception.AlreadyExistException;
 import by.home.springbootpetstoredb.exception.NotFoundException;
 import by.home.springbootpetstoredb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,17 @@ public class UserService {
     private UserRepository userRepository;
 
     public User save(User user){
-        return userRepository.save(user);
+        if (!userRepository.existsByUserName(user.getUserName())) {
+            return userRepository.save(user);
+        }
+        throw new AlreadyExistException("This user already exists");
     }
 
     @Transactional
     public void deleteByLogin(String login){
-        userRepository.deleteByUserName(login);
+        if (getByLogin(login) != null) {
+            userRepository.deleteByUserName(login);
+        }
     }
 
     public User getByLogin(String login){
@@ -28,7 +34,7 @@ public class UserService {
         if (byUserName != null) {
             return byUserName;
         }
-        throw new NotFoundException("User not found");
+        throw new NotFoundException("User not found!");
     }
 
     public boolean updateByLogin(String login, User user){

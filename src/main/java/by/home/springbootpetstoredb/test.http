@@ -97,3 +97,28 @@ GET http://localhost:8080/pet/findAllByStatus?status=PENDING
 
 DELETE http://localhost:8080/pet/1
 
+###
+
+POST http://localhost:8080/store/order
+Content-Type: application/json
+
+{
+  "petId": 1,
+  "quantity": 1,
+  "shipDate": "2020-11-12",
+  "status": "DELIVERED",
+  "complete": true
+}
+
+###
+
+GET http://localhost:8080/store/order/1
+
+###
+
+DELETE http://localhost:8080/store/order/1
+
+###
+
+GET http://localhost:8080/store/order/inventory
+

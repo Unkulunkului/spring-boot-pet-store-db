@@ -1,5 +1,6 @@
 package by.home.springbootpetstoredb.resource;
 
+import by.home.springbootpetstoredb.exception.AlreadyExistException;
 import by.home.springbootpetstoredb.exception.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class ExceptionHandlerController extends ResponseEntityExceptionHandler {
     protected ResponseEntity<String> notFoundException(NotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(AlreadyExistException.class)
+    protected ResponseEntity<String> alreadyExistException (AlreadyExistException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         Map<String, String> mapErr = new HashMap<>();
