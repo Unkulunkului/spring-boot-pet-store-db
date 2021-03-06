@@ -20,11 +20,9 @@ public class Token {
     private long id;
     private long userId;
     private String key;
-    private UserRoleEnum userRoleEnum;
 
-    public Token (long userId, UserRoleEnum userRoleEnum ,String key){
+    public Token (long userId ,String key){
         this.userId = userId;
-        this.userRoleEnum = userRoleEnum;
         this.key = key;
     }
 }

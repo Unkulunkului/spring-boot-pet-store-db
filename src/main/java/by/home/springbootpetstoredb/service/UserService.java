@@ -6,12 +6,12 @@ import by.home.springbootpetstoredb.entity.User;
 import by.home.springbootpetstoredb.entity.UserRoleEnum;
 import by.home.springbootpetstoredb.exception.AlreadyExistException;
 import by.home.springbootpetstoredb.exception.NotFoundException;
-import by.home.springbootpetstoredb.repository.TokenRepository;
 import by.home.springbootpetstoredb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 
 @Service
@@ -32,12 +32,12 @@ public class UserService {
         throw new AlreadyExistException("This user already exists");
     }
 
+
     public Token auth(User user){
         User byUserName = userRepository.getByUserName(user.getUserName());
         if (user.equals(byUserName)) {
             long id = byUserName.getId();
-            UserRoleEnum role = byUserName.getRole();
-            Token token = tokenService.getToken(id, role);
+            Token token = tokenService.getKey(id);
             return token;
         }
         throw new NotFoundException("Incorrect login or password!");
@@ -65,5 +65,13 @@ public class UserService {
         user.setId(byLogin.getId());
         userRepository.save(user);
         return true;
+    }
+
+    public User getById(long id){
+        Optional<User> byId = userRepository.findById(id);
+        if (byId.isPresent()) {
+            return byId.get();
+        }
+        return null;
     }
 }

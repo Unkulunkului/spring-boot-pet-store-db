@@ -2,7 +2,7 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "userName": "Userame5",
+  "userName": "Admin",
   "firstName": "First",
   "lastName": "Fwast",
   "email": "fwqfllq@mail.ru",
@@ -10,6 +10,7 @@ Content-Type: application/json
   "phone": "80445729199",
   "userStatus": "2"
 }
+
 
 ###
 POST http://localhost:8080/user/auth
@@ -25,14 +26,17 @@ Content-Type: application/json
 
 GET http://localhost:8080/user/Userame5
 
+
 ###
 
 DELETE http://localhost:8080/user/Userame5
+
 
 ###
 
 POST http://localhost:8080/tag
 Content-Type: application/json
+X-Token: 46c2ee91-02da-4936-87e9-7b6c35d7f1f0
 
 {
 "name": "Tjoiiu"
@@ -57,6 +61,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/pet
 Content-Type: application/json
+X-Token: dc944bef-c6fc-4748-8bbc-9e62a8d8aca3
 
 {
   "name": "Ptyuw",
@@ -102,11 +107,13 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/pet/findAllByStatus?status=PENDING
+X-Token: dc944bef-c6fc-4748-8bbc-9e62a8d8aca3
+
 
 ###
 
 DELETE http://localhost:8080/pet/1
-
+X-Token: 34b98525-a5f2-49a7-b01c-144f4c632c27
 ###
 
 POST http://localhost:8080/store/order
