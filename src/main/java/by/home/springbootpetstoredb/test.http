@@ -1,0 +1,99 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "userName": "Userame5",
+  "firstName": "First",
+  "lastName": "Fwast",
+  "email": "fwqfllq@mail.ru",
+  "password": "passwod",
+  "phone": "80445729199",
+  "userStatus": "2"
+}
+
+###
+
+GET http://localhost:8080/user/Userame5
+
+###
+
+DELETE http://localhost:8080/user/Userame5
+
+###
+
+POST http://localhost:8080/tag
+Content-Type: application/json
+
+{
+"name": "Tjoiiu"
+}
+
+###
+
+
+PUT http://localhost:8080/user/Userame5
+Content-Type: application/json
+
+{
+  "userName": "Userame5",
+  "firstName": "Test",
+  "lastName": "Fwaste",
+  "email": "fwqfllq@mail.ru",
+  "password": "passwod",
+  "phone": "80445729199",
+  "userStatus": "33"
+}
+
+###
+POST http://localhost:8080/pet
+Content-Type: application/json
+
+{
+  "name": "Ptyuw",
+  "status": "PENDING",
+  "tags": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ],
+  "category":
+  {
+    "name": "Eeef"
+  }
+}
+
+###
+
+PUT http://localhost:8080/pet
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Name",
+  "status": "PENDING",
+  "tags": [
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    }
+  ],
+  "category":
+  {
+    "name": "Eeef"
+  }
+}
+
+
+###
+
+GET http://localhost:8080/pet/findAllByStatus?status=PENDING
+
+###
+
+DELETE http://localhost:8080/pet/1
+
