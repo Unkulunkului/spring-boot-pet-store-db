@@ -24,7 +24,7 @@ public class Address {
     @NotBlank
     @NotEmpty
     private String street;
-    @Pattern(regexp = "\\d{1,4}[A-Za-z]{1,2}")
+    @Pattern(regexp = "\\d{1,4}([A-Za-z]{1,2})?")
     private String houseNumber;
     @Size(min = 3)
     private String city;
