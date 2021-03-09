@@ -7,10 +7,12 @@ import by.home.springbootpetstoredb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "user")
@@ -20,7 +22,8 @@ public class UserResource {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> save(@Valid @RequestBody User user){
+    public ResponseEntity<User> save(@RequestBody User user){
+
         User save = userService.save(user);
         return new ResponseEntity<>(save, HttpStatus.OK);
     }
@@ -32,8 +35,7 @@ public class UserResource {
         String password = userDTO.getPassword();
         user.setUserName(userName);
         user.setPassword(password);
-        User byLogin = userService.getByLogin(userName);
-        Token token = userService.auth(byLogin);
+        Token token = userService.auth(user);
         return new ResponseEntity<>(token.getKey(), HttpStatus.OK);
     }
 
