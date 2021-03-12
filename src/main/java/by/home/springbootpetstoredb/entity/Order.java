@@ -14,6 +14,15 @@ import javax.validation.constraints.*;
 @Entity
 @Table(name = "Orders")
 public class Order {
+
+    public Order(long petId, int quantity, String shipDate, OrderStatusEnum status, boolean complete) {
+        this.petId = petId;
+        this.quantity = quantity;
+        this.shipDate = shipDate;
+        this.status = status;
+        this.complete = complete;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

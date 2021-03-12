@@ -15,6 +15,14 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Pet {
+
+    public Pet(Category category, String name, List<Tag> tags, PetStatusEnum status) {
+        this.category = category;
+        this.name = name;
+        this.tags = tags;
+        this.status = status;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

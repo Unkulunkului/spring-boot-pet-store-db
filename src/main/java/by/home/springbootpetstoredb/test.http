@@ -2,20 +2,20 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "userName": "Admin",
+  "userName": "Login",
   "firstName": "First",
   "lastName": "Fwast",
   "email": "fwqfllq@mail.ru",
-  "password": "passwod",
+  "password": "password",
   "phone": [
     "80440009998",
-    "+375291259489"
+    "+37529125948"
   ],
   "userStatus": "2",
   "address":
   {
     "street": "street",
-    "houseNumber":"23a",
+    "houseNumber":"20a",
     "city": "city"
   }
 }
@@ -26,8 +26,8 @@ POST http://localhost:8080/user/auth
 Content-Type: application/json
 
 {
-  "userName": "Userame5",
-  "password": "passwod"
+  "userName": "Login",
+  "password": "password"
 }
 
 
@@ -45,7 +45,7 @@ DELETE http://localhost:8080/user/Userame5
 
 POST http://localhost:8080/tag
 Content-Type: application/json
-X-Token: 46c2ee91-02da-4936-87e9-7b6c35d7f1f0
+X-Token: 0f35107a-3dc3-4925-8670-c1f0e62d8622
 
 {
 "name": "Tjoiiu"
@@ -70,7 +70,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8080/pet
 Content-Type: application/json
-X-Token: dc944bef-c6fc-4748-8bbc-9e62a8d8aca3
+X-Token: 0f35107a-3dc3-4925-8670-c1f0e62d8622
 
 {
   "name": "Ptyuw",
@@ -127,6 +127,7 @@ X-Token: 34b98525-a5f2-49a7-b01c-144f4c632c27
 
 POST http://localhost:8080/store/order
 Content-Type: application/json
+X-Token: 0f35107a-3dc3-4925-8670-c1f0e62d8622
 
 {
   "petId": 1,
