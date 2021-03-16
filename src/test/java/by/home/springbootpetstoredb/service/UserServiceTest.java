@@ -3,9 +3,12 @@ package by.home.springbootpetstoredb.service;
 import by.home.springbootpetstoredb.entity.User;
 import by.home.springbootpetstoredb.entity.UserRoleEnum;
 import by.home.springbootpetstoredb.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,39 +18,41 @@ class UserServiceTest {
     @Autowired
     private UserRepository userRepository;
 
+    private User user;
+
+    @BeforeEach
+    void createUser(){
+        user = new User();
+        user.setUserName("Olejka");
+        user.setPassword("Olegunya");
+        user.setRole(UserRoleEnum.ADMIN);
+    }
+
     @Test
     void save() {
-        User expected = new User();
-        expected.setUserName("Olejka");
-        expected.setPassword("Olegunya");
-        expected.setRole(UserRoleEnum.ADMIN);
-        User actual = userRepository.save(expected);
-        assertEquals(expected, actual);
+        user.setRole(UserRoleEnum.ADMIN);
+        User actual = userRepository.save(user);
+        assertEquals(user, actual);
     }
 
     @Test
     void deleteByLogin() {
+        userRepository.save(user);
+        userRepository.deleteByUserName("Olejka");
+        assertNull(userRepository.getByUserName("Olejka"));
     }
 
     @Test
     void getByLogin() {
-        User expected = new User();
-        expected.setUserName("Olejka");
-        expected.setPassword("Olegunya");
-        expected.setRole(UserRoleEnum.ADMIN);
-        userRepository.save(expected);
+        userRepository.save(user);
         User actual = userRepository.getByUserName("Olejka");
-        assertEquals(expected, actual);
+        assertEquals(user, actual);
     }
 
     @Test
     void getById() {
-        User expected = new User();
-        expected.setUserName("Olejka");
-        expected.setPassword("Olegunya");
-        expected.setRole(UserRoleEnum.ADMIN);
-        userRepository.save(expected);
-        User actual = userRepository.findById(1L).get();
-        assertEquals(expected, actual);
+        userRepository.save(user);
+        Optional<User> byId = userRepository.findById(user.getId());
+        assertEquals(user, byId.orElse(new User()));
     }
 }

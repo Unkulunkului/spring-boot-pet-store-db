@@ -2,6 +2,7 @@ package by.home.springbootpetstoredb.service;
 
 import by.home.springbootpetstoredb.entity.Tag;
 import by.home.springbootpetstoredb.repository.TagRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,20 +15,24 @@ class TagServiceTest {
     @Autowired
     private TagRepository tagRepository;
 
+    private Tag tag;
+
+    @BeforeEach
+    void createTag(){
+        tag = new Tag();
+        tag.setName("Tag");
+    }
+
     @Test
     void save() {
-        Tag expected = new Tag();
-        expected.setName("Tag");
-        Tag actual = tagRepository.save(expected);
-        assertEquals(expected, actual);
+        Tag actual = tagRepository.save(tag);
+        assertEquals(tag, actual);
     }
 
     @Test
     void getById() {
-        Tag expected = new Tag();
-        expected.setName("Tag");
-        tagRepository.save(expected);
-        Tag actual = tagRepository.getOne(1L);
-        assertEquals(expected, actual);
+        tagRepository.save(tag);
+        Tag actual = tagRepository.getOne(tag.getId());
+        assertEquals(tag, actual);
     }
 }

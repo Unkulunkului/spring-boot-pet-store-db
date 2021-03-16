@@ -4,6 +4,7 @@ import by.home.springbootpetstoredb.entity.Token;
 import by.home.springbootpetstoredb.entity.User;
 import by.home.springbootpetstoredb.entity.UserRoleEnum;
 import by.home.springbootpetstoredb.repository.TokenRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class TokenService {
 
     @Autowired
@@ -26,6 +28,7 @@ public class TokenService {
         }
         UUID uuid = UUID.randomUUID();
         Token token = new Token(userId, uuid.toString());
+        log.info(token+" was created");
         return tokenRepository.save(token);
     }
 
